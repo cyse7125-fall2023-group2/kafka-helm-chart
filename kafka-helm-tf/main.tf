@@ -6,7 +6,7 @@ provider "helm" {
 
 resource "helm_release" "kafka_helm_release" {
   name       = "kafka-app-release"
-  chart      = "../kafka-helm-chart"
+  chart      = "../kafka-26.2.0.tgz"
 #   namespace  = kubernetes_namespace.my_namespace.metadata.0.name
 }
 
@@ -17,6 +17,6 @@ resource "null_resource" "run_script" {
   }
 
   provisioner "local-exec" {
-    command = "bash gcloud_setup.sh ${var.gke_cluster_name} ${var.project_name} ${var.project_id}"
+    command = "bash gcloud_setup.sh ${var.gke_cluster_name} ${var.project_id}"
   }
 }
